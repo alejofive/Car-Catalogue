@@ -19,7 +19,7 @@ export default function Home() {
   const [year, setYear] = useState(2022);
 
   // pagination states
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(9);
 
   const getCars = async () => {
     setLoading(true);
@@ -29,7 +29,7 @@ export default function Home() {
         manufacturer: manufacturer || "",
         year: year || 2022,
         fuel: fuel || "",
-        limit: limit || 10,
+        limit: limit || 9,
         model: model || "",
       });
 
@@ -44,8 +44,6 @@ export default function Home() {
   useEffect(() => {
     getCars();
   }, [fuel, year, limit, manufacturer, model]);
-
-  const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
   return (
     <main className="overflow-hidden">
@@ -78,7 +76,7 @@ export default function Home() {
               ))}
             </div>
             <ShowMore
-              pageNumber={limit / 10}
+              pageNumber={limit / 9}
               isNext={limit > allCars.length}
               setLimit={setLimit}
             />
@@ -98,7 +96,6 @@ export default function Home() {
         ) : (
           <div className="home__error-container">
             <h2 className="text-black text-xl font-bold">Oops, no results</h2>
-            <p>{allCars?.message}</p>
           </div>
         )}
       </div>
